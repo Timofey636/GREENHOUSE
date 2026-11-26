@@ -1,114 +1,158 @@
 const products = [
   {
-    id: 1,
-    name: "Орхидея каскадная",
-    price: 1900,
-    category: "small",
-    description: "Каскадная орхидея с нежными цветами",
-    label: "ORCHID",
-    image: "images/plant1.jpg"
-  },
+  id: 1,
+  name: "Орхидеи каскадные/Лимонный каскад/Faction",
+  price: 1900,
+  category: "small",
+  description: "Высота 50–55 см. Диаметр кашпо 12 см. На фото актуальное цветение. Отличные корни и шея.",
+  label: "ORCHID",
+
+  image: "https://40.img.avito.st/image/1/1.du6OsLa42ge4B1gK7qlRmYQQ2AEwEVgRuBzYBT4Z0g04.NCb8JcVi53fsU_m5dh8Ju_UJmzTuz9Gw9uLF4jchfhs",
+
+  gallery: [
+    "https://40.img.avito.st/image/1/1.du6OsLa42ge4B1gK7qlRmYQQ2AEwEVgRuBzYBT4Z0g04.NCb8JcVi53fsU_m5dh8Ju_UJmzTuz9Gw9uLF4jchfhs",
+    "https://c80.img.avito.st/image/1/1.oEMzkra4DKoFJY6nf8zyKzsyDqyNM468BT4OqIM7BKCF.zdubXtv1yzkhP5gVyox4cp_qA31HtjCfn317y7-7BP4",
+    "https://c90.img.avito.st/image/1/1.BuQCE7a4qg00pCgAAgdEuwmzqAu8sigbNL-oD7K6oge0.M03Tm2SvCZEzPALyAqoMqBoPeuXCcV1H392aBqTcWnU",
+    "https://20.img.avito.st/image/1/1._bAGBba4UVkwstNUcArB2A6lU1-4pNNPMKlTW7asWVOw.wZDZgV3uUR8es3YJz7b5eE1Izw-q9cp_KWsNFce-REE?cqp=2.YN7dHnrK-mhyvtTBpyubvaFoUVdTM3W7BFy5YaeXzZ_Q2glMrBb_s4irqaJhHlfJPgeDGUqVXQ==",
+    "https://40.img.avito.st/image/1/1.RXMTgba46ZolNmuXFZgAHRsh65ytIGuMJS3rmKMo4ZCl.-D6Y-H2UygD--II6H60EUO-1tNjIxh6bZ9ZWbku42hc",
+    "https://c70.img.avito.st/image/1/1.SqiWWLa45kGg72RMjkUM95345Eco-WRXoPTkQybx7ksg.idZsSDMg2b3ymV-DpJGLD9pkKd2s8OZTCVjsvjkJ3zw",
+    "https://c60.img.avito.st/image/1/1.iQwxara4JeUH3afoLwDwUTrKJ-OPy6fzB8Yn54HDLe-H.a8k1-L6dzEALUmYFQfoQpUGaWJXRIRt6wlgSGfNYQ54",
+    "https://40.img.avito.st/image/1/1.4ef9P7a4TQ7LiM8DszTCwvCfTwhDns8Yy5NPDE2WRQRL.LG4P4XDnVEfbyceAa0d5BeaF5J7dbkB_gFyjMLJn7IE",
+    "https://60.img.avito.st/image/1/1.4TH5pLa4TdjPE8_Vt4uibvIET95HBc_OzwhP2kkNRdJP.OhWdiRcWDepp3VxzpbQHbvLM2A3ZX1uhCtt9yzYKWw8"
+  ]
+},
   {
     id: 2,
-    name: "Орхидея Polka",
-    price: 1491,
+    name: "Фаленопсис Болонья, каскад, 50 см",
+    price: 1800,
     category: "small",
-    description: "Фаленопсис с выразительным рисунком",
-    label: "SALE",
+    description: "Высота 53 см. Диаметр кашпо 12 см. На фото актуальное цветение.",
+    label: "ORCHID",
     image: "images/plant2.jpg"
   },
   {
     id: 3,
-    name: "Paphiopedilum",
-    price: 2300,
+    name: "Ангел Айс / Кельн / Фридрихштад, 40 см",
+    price: 1400,
     category: "small",
-    description: "Экзотическая орхидея с необычным цветком",
-    label: "RARE",
+    description: "Компактные орхидеи мультифлоры. Высота около 40 см. Диаметр кашпо 9 см. По 2 цветоноса. Здоровые корни и шея. На фото актуальное цветение. Цвета: светло-розовая Angel Eyes, фиолетовый Кельн, малиновая Фридрихштад.",
+    label: "ORCHID",
     image: "images/plant3.jpg"
   },
   {
     id: 4,
-    name: "Орхидея Angel",
-    price: 1400,
-    category: "small",
-    description: "Нежные оттенки и элегантная форма",
-    label: "ORCHID",
+    name: "Пальма финиковая, 110 см",
+    price: 5000,
+    category: "large",
+description: "Шикарная финиковая пальма. Двойное кашпо с фитильным поливом. Высота 110 см от земли. Посажена в авторский грунт с пролонгированным удобрением. Идеально для озеленения пространства квартиры, офиса или ресторана.",
+    label: "TROPICAL",
     image: "images/plant4.jpg"
   },
   {
     id: 5,
-    name: "Gymnocalycium",
-    price: 1500,
-    category: "easy",
-    description: "Компактный кактус с необычной окраской",
-    label: "CACTUS",
+    name: "Антуриум Рейнбоу Чемпион, D14/H57",
+    price: 2200,
+    category: "small",
+   description: "Антуриум Рейнбоу Чемпион. Диаметр кашпо 14 см. Высота 57 см.",
+    label: "ANTHURIUM",
     image: "images/plant5.jpg"
   },
   {
     id: 6,
-    name: "Phalaenopsis Moscow",
-    price: 1800,
+    name: "Антуриум Деликате, D12/H55",
+    price: 2100,
     category: "small",
-    description: "Коллекционный фаленопсис",
-    label: "ORCHID",
+    description: "Антуриум Деликата. Высота около 55 см. Диаметр кашпо 14 см. На фото актуальное цветение.",
+    label: "ANTHURIUM",
     image: "images/plant6.jpg"
   },
   {
     id: 7,
-    name: "Zamioculcas Lima",
-    price: 1500,
+    name: "Замиокулькас Зензи, D14/H50",
+    price: 2100,
     category: "easy",
-    description: "Замиокулькас высотой около 63 см",
+    description: "Замиокулькас Зензи. Диаметр кашпо 14 см. Высота 50 см.",
     label: "EASY CARE",
     image: "images/plant7.jpg"
   },
   {
     id: 8,
-    name: "Strelitzia Nicolai",
-    price: 1700,
-    category: "large",
-    description: "Стрелиция с двумя стволами",
-    label: "TROPICAL",
+    name: "Фаленопсис Миа Big Lip, 2 цвета, 55 см",
+    price: 1800,
+    category: "small",
+    description: "Орхидея фаленопсис Миа Big Lip. Диаметр кашпо 12 см. Высота 55 см. Отличные корни и шея. На фото актуальное цветение.",
+    label: "ORCHID",
     image: "images/plant8.jpg"
   },
   {
     id: 9,
-    name: "Asplenium",
-    price: 1300,
-    category: "small",
-    description: "Декоративный папоротник с волнистыми листьями",
-    label: "FERN",
+    name: "Гимнокалициум вариегатный",
+    price: 1500,
+    category: "easy",
+    description: "Кактус Гимнокалициум вариегатный. В подарочной коробке. Яркие расцветки. В наличии левый вариант.",
+    label: "CACTUS",
     image: "images/plant9.jpg"
   },
   {
     id: 10,
-    name: "Ficus Elastica Belize",
-    price: 2550,
-    category: "large",
-    description: "Фикус с выразительными тёмными листьями",
-    label: "POPULAR",
-    image: "images/plant10.jpg"
-  },
-  {
-    id: 11,
-    name: "Zamioculcas Zenzi",
-    price: 1800,
-    category: "easy",
-    description: "Компактный сорт замиокулькаса",
-    label: "EASY CARE",
-    image: "images/plant11.jpg"
-  },
-  {
-    id: 12,
-    name: "Anthurium Rainbow",
-    price: 2200,
+    name: "Антуриум Грин Квин, D9/H32",
+    price: 1150,
     category: "small",
-    description: "Антуриум с эффектными тёмными листьями",
-    label: "BOTANICAL",
-    image: "images/plant12.jpg"
+    description: "Антуриум Грин Квин. Диаметр кашпо 9 см. Высота около 32 см.",
+    label: "ANTHURIUM",
+    image: "images/plant10.jpg"
   }
 ];
+/* LOCAL PLANT PHOTO GALLERIES */
 
+async function loadPlantPhotos(productId) {
+  const photos = [];
+  const extensions = ["jpg", "jpeg", "png", "webp"];
+
+  for (let number = 1; number <= 30; number++) {
+    let found = false;
+
+    for (const ext of extensions) {
+      const path = `images/plant${productId}/${number}.${ext}`;
+
+      const loaded = await new Promise(resolve => {
+        const img = new Image();
+
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+
+        img.src = path;
+      });
+
+      if (loaded) {
+        photos.push(path);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) break;
+  }
+
+  return photos;
+}
+
+async function initializePlantGalleries() {
+  for (const product of products) {
+    const photos = await loadPlantPhotos(product.id);
+
+    if (photos.length > 0) {
+      product.gallery = photos;
+      product.image = photos[0];
+    } else {
+      product.gallery = [product.image];
+    }
+  }
+
+  renderProducts();
+}
+
+initializePlantGalleries();
 let cart = [];
 let activeCategory = "all";
 let searchQuery = "";
@@ -216,8 +260,7 @@ function renderProducts() {
           <span class="product-price">${formatPrice(product.price)}</span>
         </div>
 
-        <p>${product.description}</p>
-
+        <p class="product-description">${product.description.replace(/\.\s+/g, ".<br>")}</p>
         <button class="add-button" data-add="${product.id}">
           Добавить в корзину <span>+</span>
         </button>
@@ -313,15 +356,25 @@ function openProductDetails(id) {
   selectedDetailProduct = product;
 
   detailImage.src = product.image;
-  detailImage.alt = product.name;
-  detailName.textContent = product.name;
-  detailPrice.textContent = formatPrice(product.price);
-  detailDescription.textContent = product.description;
-  detailCategory.textContent = categoryNames[product.category] || "Растение";
-  detailLabel.textContent = product.label;
+detailImage.alt = product.name;
 
-  productModalOverlay.classList.add("open");
-  document.body.classList.add("no-scroll");
+detailName.textContent = product.name;
+detailPrice.textContent = formatPrice(product.price);
+detailDescription.textContent = product.description;
+detailCategory.textContent = categoryNames[product.category] || "Растение";
+detailLabel.textContent = product.label;
+
+/* PHOTO GALLERY */
+
+window.currentGallery = product.gallery && product.gallery.length
+  ? product.gallery
+  : [product.image];
+
+window.currentGalleryIndex = 0;
+
+updateProductGallery();
+
+productModalOverlay.classList.add("open");
 }
 
 function closeProductDetails() {
@@ -787,3 +840,76 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     card.classList.remove("tilt-active");
   });
 }
+/* PRODUCT PHOTO GALLERY */
+
+function updateProductGallery() {
+  if (!window.currentGallery || !window.currentGallery.length) return;
+
+  detailImage.src = window.currentGallery[window.currentGalleryIndex];
+
+  const counter = document.getElementById("galleryCounter");
+
+  if (counter) {
+    counter.textContent =
+      `${window.currentGalleryIndex + 1} / ${window.currentGallery.length}`;
+  }
+
+  const prev = document.getElementById("galleryPrev");
+  const next = document.getElementById("galleryNext");
+
+  if (prev && next) {
+    const visible = window.currentGallery.length > 1;
+
+    prev.style.display = visible ? "flex" : "none";
+    next.style.display = visible ? "flex" : "none";
+  }
+}
+
+document.getElementById("galleryPrev")?.addEventListener("click", () => {
+  if (!window.currentGallery || window.currentGallery.length < 2) return;
+
+  window.currentGalleryIndex =
+    (window.currentGalleryIndex - 1 + window.currentGallery.length)
+    % window.currentGallery.length;
+
+  updateProductGallery();
+});
+
+document.getElementById("galleryNext")?.addEventListener("click", () => {
+  if (!window.currentGallery || window.currentGallery.length < 2) return;
+
+  window.currentGalleryIndex =
+    (window.currentGalleryIndex + 1) % window.currentGallery.length;
+
+  updateProductGallery();
+});
+
+/* MOBILE SWIPE */
+
+const gallery = document.getElementById("detailGallery");
+
+let galleryTouchStartX = 0;
+
+gallery?.addEventListener("touchstart", (event) => {
+  galleryTouchStartX = event.changedTouches[0].screenX;
+}, { passive: true });
+
+gallery?.addEventListener("touchend", (event) => {
+  const touchEndX = event.changedTouches[0].screenX;
+  const difference = touchEndX - galleryTouchStartX;
+
+  if (Math.abs(difference) < 50) return;
+
+  if (!window.currentGallery || window.currentGallery.length < 2) return;
+
+  if (difference > 0) {
+    window.currentGalleryIndex =
+      (window.currentGalleryIndex - 1 + window.currentGallery.length)
+      % window.currentGallery.length;
+  } else {
+    window.currentGalleryIndex =
+      (window.currentGalleryIndex + 1) % window.currentGallery.length;
+  }
+
+  updateProductGallery();
+}, { passive: true });
