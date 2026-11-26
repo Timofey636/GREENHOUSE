@@ -109,29 +109,22 @@ async function loadPlantPhotos(productId) {
   const photos = [];
   const extensions = ["jpg", "jpeg", "png", "webp"];
 
-  for (let number = 1; number <= 30; number++) {
-    let found = false;
-
-    for (const ext of extensions) {
-      const path = `images/plant${productId}/${number}.${ext}`;
-
-      const loaded = await new Promise(resolve => {
+  for (let number = 1; number <= 15; number++) {
+    const checks = extensions.map(ext =>
+      new Promise(resolve => {
         const img = new Image();
+        img.onload = () => resolve(`images/plant${productId}/${number}.${ext}`);
+        img.onerror = () => resolve(null);
+        img.src = `images/plant${productId}/${number}.${ext}`;
+      })
+    );
 
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-
-        img.src = path;
-      });
-
-      if (loaded) {
-        photos.push(path);
-        found = true;
-        break;
-      }
-    }
+    const results = await Promise.all(checks);
+    const found = results.find(Boolean);
 
     if (!found) break;
+
+    photos.push(found);
   }
 
   return photos;
