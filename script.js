@@ -8,17 +8,6 @@ const products = [
   label: "ORCHID",
 
   image: "images/plant1/1.jpg",
-  gallery: [
-    "https://40.img.avito.st/image/1/1.du6OsLa42ge4B1gK7qlRmYQQ2AEwEVgRuBzYBT4Z0g04.NCb8JcVi53fsU_m5dh8Ju_UJmzTuz9Gw9uLF4jchfhs",
-    "https://c80.img.avito.st/image/1/1.oEMzkra4DKoFJY6nf8zyKzsyDqyNM468BT4OqIM7BKCF.zdubXtv1yzkhP5gVyox4cp_qA31HtjCfn317y7-7BP4",
-    "https://c90.img.avito.st/image/1/1.BuQCE7a4qg00pCgAAgdEuwmzqAu8sigbNL-oD7K6oge0.M03Tm2SvCZEzPALyAqoMqBoPeuXCcV1H392aBqTcWnU",
-    "https://20.img.avito.st/image/1/1._bAGBba4UVkwstNUcArB2A6lU1-4pNNPMKlTW7asWVOw.wZDZgV3uUR8es3YJz7b5eE1Izw-q9cp_KWsNFce-REE?cqp=2.YN7dHnrK-mhyvtTBpyubvaFoUVdTM3W7BFy5YaeXzZ_Q2glMrBb_s4irqaJhHlfJPgeDGUqVXQ==",
-    "https://40.img.avito.st/image/1/1.RXMTgba46ZolNmuXFZgAHRsh65ytIGuMJS3rmKMo4ZCl.-D6Y-H2UygD--II6H60EUO-1tNjIxh6bZ9ZWbku42hc",
-    "https://c70.img.avito.st/image/1/1.SqiWWLa45kGg72RMjkUM95345Eco-WRXoPTkQybx7ksg.idZsSDMg2b3ymV-DpJGLD9pkKd2s8OZTCVjsvjkJ3zw",
-    "https://c60.img.avito.st/image/1/1.iQwxara4JeUH3afoLwDwUTrKJ-OPy6fzB8Yn54HDLe-H.a8k1-L6dzEALUmYFQfoQpUGaWJXRIRt6wlgSGfNYQ54",
-    "https://40.img.avito.st/image/1/1.4ef9P7a4TQ7LiM8DszTCwvCfTwhDns8Yy5NPDE2WRQRL.LG4P4XDnVEfbyceAa0d5BeaF5J7dbkB_gFyjMLJn7IE",
-    "https://60.img.avito.st/image/1/1.4TH5pLa4TdjPE8_Vt4uibvIET95HBc_OzwhP2kkNRdJP.OhWdiRcWDepp3VxzpbQHbvLM2A3ZX1uhCtt9yzYKWw8"
-  ]
 },
   {
     id: 2,
@@ -907,5 +896,4 @@ gallery?.addEventListener("touchend", (event) => {
 
   updateProductGallery();
 }, { passive: true });
-renderProducts();
 initializePlantGalleries();
