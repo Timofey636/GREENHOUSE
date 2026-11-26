@@ -3055,3 +3055,40 @@ img, canvas, video {
   max-width: 100%;
 }
 }
+/* FINAL MOBILE MENU FIX */
+@media (max-width: 700px) {
+
+  .header {
+    overflow: visible !important;
+  }
+
+  .header-inner {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .header nav {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--cream);
+    padding: 25px 20px;
+    flex-direction: column;
+    gap: 22px;
+    border-bottom: 1px solid var(--line);
+    z-index: 9999;
+  }
+
+  .header nav.mobile-open {
+    display: flex !important;
+  }
+
+  .header nav a {
+    display: block;
+    font-size: 16px;
+    padding: 5px 0;
+  }
+}
