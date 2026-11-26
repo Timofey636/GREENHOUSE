@@ -123,31 +123,44 @@ async function loadPlantPhotos(productId) {
 /* LOAD ALL 10 PLANTS SIMULTANEOUSLY */
 
 async function initializePlantGalleries() {
-  renderProducts();
+  console.log("Начинаю загрузку галерей...");
 
   await Promise.all(
-  products.map(async product => {
-    const photos = await loadPlantPhotos(product.id);
+    products.map(async product => {
+      const photos = await loadPlantPhotos(product.id);
 
-    if (photos.length > 0) {
-      product.gallery = photos;
-      product.image = photos[0];
+      if (photos.length > 0) {
+        product.gallery = photos;
+        product.image = photos[0];
+      } else {
+        product.gallery = [product.image];
+      }
 
-      // Предварительно загружаем все фото галереи
-      photos.forEach(path => {
-        const img = new Image();
-        img.src = path;
-      });
-    } else {
-      product.gallery = [product.image];
-    }
-  })
-);
+      // Дожидаемся загрузки самих изображений
+      await Promise.all(
+        product.gallery.map(path =>
+          new Promise(resolve => {
+            const img = new Image();
+
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+
+            img.src = path;
+
+            if (img.complete) resolve(true);
+          })
+        )
+      );
+
+      console.log(`Растение ${product.id}: готово`);
+    })
+  );
 
   renderProducts();
 
-  console.log("Все локальные галереи проверены!");
+  console.log("ВСЕ ГАЛЕРЕИ ГОТОВЫ!");
 }
+
 
 initializePlantGalleries();
 let cart = [];
