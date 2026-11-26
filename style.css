@@ -3092,3 +3092,20 @@ img, canvas, video {
     padding: 5px 0;
   }
 }
+/* FIX: TELEGRAM IN MOBILE HEADER */
+@media (max-width: 700px) {
+  .social-header {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+  }
+
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+}
