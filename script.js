@@ -126,17 +126,23 @@ async function initializePlantGalleries() {
   renderProducts();
 
   await Promise.all(
-    products.map(async product => {
-      const photos = await loadPlantPhotos(product.id);
+  products.map(async product => {
+    const photos = await loadPlantPhotos(product.id);
 
-      if (photos.length > 0) {
-        product.gallery = photos;
-        product.image = photos[0];
-      } else {
-        product.gallery = [product.image];
-      }
-    })
-  );
+    if (photos.length > 0) {
+      product.gallery = photos;
+      product.image = photos[0];
+
+      // Предварительно загружаем все фото галереи
+      photos.forEach(path => {
+        const img = new Image();
+        img.src = path;
+      });
+    } else {
+      product.gallery = [product.image];
+    }
+  })
+);
 
   renderProducts();
 
