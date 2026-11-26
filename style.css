@@ -2988,4 +2988,70 @@ img {
     width: 100%;
     max-width: 100%;
   }
+  /* MOBILE HEADER FIX */
+@media (max-width: 700px) {
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .header .container,
+  header .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  header {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .social-header {
+    display: none !important;
+  }
+
+  .cart-button {
+    padding: 9px 12px;
+    gap: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .cart-count {
+    min-width: 24px;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    font-size: 19px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  .menu-button {
+    flex-shrink: 0;
+  }
+}
+
+/* Убираем случайное расширение страницы */
+html {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img, canvas, video {
+  max-width: 100%;
+}
 }
