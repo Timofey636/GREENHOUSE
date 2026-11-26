@@ -91,7 +91,7 @@ description: "Шикарная финиковая пальма. Двойное �
     image: "images/plant10/1.jpg",
   }
 ];
-/* LOCAL PLANT PHOTO GALLERIES */
+/* LOCAL PHOTO LOADER */
 
 async function loadPlantPhotos(productId) {
   const photos = [];
@@ -100,10 +100,12 @@ async function loadPlantPhotos(productId) {
   for (let number = 1; number <= 15; number++) {
     const checks = extensions.map(ext =>
       new Promise(resolve => {
+        const path = `images/plant${productId}/${number}.${ext}`;
         const img = new Image();
-        img.onload = () => resolve(`images/plant${productId}/${number}.${ext}`);
+
+        img.onload = () => resolve(path);
         img.onerror = () => resolve(null);
-        img.src = `images/plant${productId}/${number}.${ext}`;
+        img.src = path;
       })
     );
 
@@ -117,7 +119,10 @@ async function loadPlantPhotos(productId) {
 
   return photos;
 }
-  async function initializePlantGalleries() {
+
+/* LOAD ALL 10 PLANTS SIMULTANEOUSLY */
+
+async function initializePlantGalleries() {
   renderProducts();
 
   await Promise.all(
@@ -134,8 +139,11 @@ async function loadPlantPhotos(productId) {
   );
 
   renderProducts();
+
+  console.log("Все локальные галереи проверены!");
 }
 
+initializePlantGalleries();
 let cart = [];
 let activeCategory = "all";
 let searchQuery = "";
