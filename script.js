@@ -7,8 +7,7 @@ const products = [
   description: "Высота 50–55 см. Диаметр кашпо 12 см. На фото актуальное цветение. Отличные корни и шея.",
   label: "ORCHID",
 
-  image: "https://40.img.avito.st/image/1/1.du6OsLa42ge4B1gK7qlRmYQQ2AEwEVgRuBzYBT4Z0g04.NCb8JcVi53fsU_m5dh8Ju_UJmzTuz9Gw9uLF4jchfhs",
-
+  image: "images/plant1/1.jpg"
   gallery: [
     "https://40.img.avito.st/image/1/1.du6OsLa42ge4B1gK7qlRmYQQ2AEwEVgRuBzYBT4Z0g04.NCb8JcVi53fsU_m5dh8Ju_UJmzTuz9Gw9uLF4jchfhs",
     "https://c80.img.avito.st/image/1/1.oEMzkra4DKoFJY6nf8zyKzsyDqyNM468BT4OqIM7BKCF.zdubXtv1yzkhP5gVyox4cp_qA31HtjCfn317y7-7BP4",
@@ -28,7 +27,7 @@ const products = [
     category: "small",
     description: "Высота 53 см. Диаметр кашпо 12 см. На фото актуальное цветение.",
     label: "ORCHID",
-    image: "images/plant2.jpg"
+    image: "images/plant2/1.jpg"
   },
   {
     id: 3,
@@ -37,7 +36,7 @@ const products = [
     category: "small",
     description: "Компактные орхидеи мультифлоры. Высота около 40 см. Диаметр кашпо 9 см. По 2 цветоноса. Здоровые корни и шея. На фото актуальное цветение. Цвета: светло-розовая Angel Eyes, фиолетовый Кельн, малиновая Фридрихштад.",
     label: "ORCHID",
-    image: "images/plant3.jpg"
+    image: "images/plant3/1.jpg"
   },
   {
     id: 4,
@@ -46,7 +45,7 @@ const products = [
     category: "large",
 description: "Шикарная финиковая пальма. Двойное кашпо с фитильным поливом. Высота 110 см от земли. Посажена в авторский грунт с пролонгированным удобрением. Идеально для озеленения пространства квартиры, офиса или ресторана.",
     label: "TROPICAL",
-    image: "images/plant4.jpg"
+    image: "images/plant4/1.jpg"
   },
   {
     id: 5,
@@ -55,7 +54,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "small",
    description: "Антуриум Рейнбоу Чемпион. Диаметр кашпо 14 см. Высота 57 см.",
     label: "ANTHURIUM",
-    image: "images/plant5.jpg"
+    image: "images/plant5/1.jpg"
   },
   {
     id: 6,
@@ -64,7 +63,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "small",
     description: "Антуриум Деликата. Высота около 55 см. Диаметр кашпо 14 см. На фото актуальное цветение.",
     label: "ANTHURIUM",
-    image: "images/plant6.jpg"
+    image: "images/plant6/1.jpg"
   },
   {
     id: 7,
@@ -73,7 +72,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "easy",
     description: "Замиокулькас Зензи. Диаметр кашпо 14 см. Высота 50 см.",
     label: "EASY CARE",
-    image: "images/plant7.jpg"
+    image: "images/plant7/1.jpg"
   },
   {
     id: 8,
@@ -82,7 +81,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "small",
     description: "Орхидея фаленопсис Миа Big Lip. Диаметр кашпо 12 см. Высота 55 см. Отличные корни и шея. На фото актуальное цветение.",
     label: "ORCHID",
-    image: "images/plant8.jpg"
+    image: "images/plant8/1.jpg"
   },
   {
     id: 9,
@@ -91,7 +90,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "easy",
     description: "Кактус Гимнокалициум вариегатный. В подарочной коробке. Яркие расцветки. В наличии левый вариант.",
     label: "CACTUS",
-    image: "images/plant9.jpg"
+    image: "images/plant9/1.jpg"
   },
   {
     id: 10,
@@ -100,7 +99,7 @@ description: "Шикарная финиковая пальма. Двойное �
     category: "small",
     description: "Антуриум Грин Квин. Диаметр кашпо 9 см. Высота около 32 см.",
     label: "ANTHURIUM",
-    image: "images/plant10.jpg"
+    image: "images/plant10/1.jpg"
   }
 ];
 /* LOCAL PLANT PHOTO GALLERIES */
@@ -908,4 +907,5 @@ gallery?.addEventListener("touchend", (event) => {
 
   updateProductGallery();
 }, { passive: true });
+renderProducts();
 initializePlantGalleries();
