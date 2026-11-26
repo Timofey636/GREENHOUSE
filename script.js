@@ -1,0 +1,789 @@
+const products = [
+  {
+    id: 1,
+    name: "Орхидея каскадная",
+    price: 1900,
+    category: "small",
+    description: "Каскадная орхидея с нежными цветами",
+    label: "ORCHID",
+    image: "images/plant1.jpg"
+  },
+  {
+    id: 2,
+    name: "Орхидея Polka",
+    price: 1491,
+    category: "small",
+    description: "Фаленопсис с выразительным рисунком",
+    label: "SALE",
+    image: "images/plant2.jpg"
+  },
+  {
+    id: 3,
+    name: "Paphiopedilum",
+    price: 2300,
+    category: "small",
+    description: "Экзотическая орхидея с необычным цветком",
+    label: "RARE",
+    image: "images/plant3.jpg"
+  },
+  {
+    id: 4,
+    name: "Орхидея Angel",
+    price: 1400,
+    category: "small",
+    description: "Нежные оттенки и элегантная форма",
+    label: "ORCHID",
+    image: "images/plant4.jpg"
+  },
+  {
+    id: 5,
+    name: "Gymnocalycium",
+    price: 1500,
+    category: "easy",
+    description: "Компактный кактус с необычной окраской",
+    label: "CACTUS",
+    image: "images/plant5.jpg"
+  },
+  {
+    id: 6,
+    name: "Phalaenopsis Moscow",
+    price: 1800,
+    category: "small",
+    description: "Коллекционный фаленопсис",
+    label: "ORCHID",
+    image: "images/plant6.jpg"
+  },
+  {
+    id: 7,
+    name: "Zamioculcas Lima",
+    price: 1500,
+    category: "easy",
+    description: "Замиокулькас высотой около 63 см",
+    label: "EASY CARE",
+    image: "images/plant7.jpg"
+  },
+  {
+    id: 8,
+    name: "Strelitzia Nicolai",
+    price: 1700,
+    category: "large",
+    description: "Стрелиция с двумя стволами",
+    label: "TROPICAL",
+    image: "images/plant8.jpg"
+  },
+  {
+    id: 9,
+    name: "Asplenium",
+    price: 1300,
+    category: "small",
+    description: "Декоративный папоротник с волнистыми листьями",
+    label: "FERN",
+    image: "images/plant9.jpg"
+  },
+  {
+    id: 10,
+    name: "Ficus Elastica Belize",
+    price: 2550,
+    category: "large",
+    description: "Фикус с выразительными тёмными листьями",
+    label: "POPULAR",
+    image: "images/plant10.jpg"
+  },
+  {
+    id: 11,
+    name: "Zamioculcas Zenzi",
+    price: 1800,
+    category: "easy",
+    description: "Компактный сорт замиокулькаса",
+    label: "EASY CARE",
+    image: "images/plant11.jpg"
+  },
+  {
+    id: 12,
+    name: "Anthurium Rainbow",
+    price: 2200,
+    category: "small",
+    description: "Антуриум с эффектными тёмными листьями",
+    label: "BOTANICAL",
+    image: "images/plant12.jpg"
+  }
+];
+
+let cart = [];
+let activeCategory = "all";
+let searchQuery = "";
+let favoriteIds = new Set();
+let favoritesOnly = false;
+let sortMode = "default";
+let selectedDetailProduct = null;
+
+const productGrid = document.getElementById("productGrid");
+const productCount = document.getElementById("productCount");
+const emptyState = document.getElementById("emptyState");
+
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartItems = document.getElementById("cartItems");
+const cartEmpty = document.getElementById("cartEmpty");
+const cartFooter = document.getElementById("cartFooter");
+
+const cartCount = document.getElementById("cartCount");
+const cartTitleCount = document.getElementById("cartTitleCount");
+const cartTotal = document.getElementById("cartTotal");
+const modalTotal = document.getElementById("modalTotal");
+
+const modalOverlay = document.getElementById("modalOverlay");
+const checkoutForm = document.getElementById("checkoutForm");
+const toast = document.getElementById("toast");
+
+const productModalOverlay = document.getElementById("productModalOverlay");
+const detailImage = document.getElementById("detailImage");
+const detailName = document.getElementById("detailName");
+const detailPrice = document.getElementById("detailPrice");
+const detailDescription = document.getElementById("detailDescription");
+const detailCategory = document.getElementById("detailCategory");
+const detailLabel = document.getElementById("detailLabel");
+const detailAddButton = document.getElementById("detailAddButton");
+const productModalClose = document.getElementById("productModalClose");
+
+const sortSelect = document.getElementById("sortSelect");
+const favoriteFilter = document.getElementById("favoriteFilter");
+
+const formatPrice = price =>
+  new Intl.NumberFormat("ru-RU").format(price) + " ₽";
+
+const categoryNames = {
+  easy: "Неприхотливые",
+  large: "Крупные",
+  small: "Компактные"
+};
+
+/* PRODUCTS */
+
+function renderProducts() {
+  let filtered = products.filter(product => {
+    const matchesCategory =
+      activeCategory === "all" ||
+      (activeCategory === "easy" && product.category === "easy") ||
+      (activeCategory === "large" && product.category === "large") ||
+      (activeCategory === "small" && product.category === "small");
+
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesFavorites =
+      !favoritesOnly || favoriteIds.has(product.id);
+
+    return matchesCategory && matchesSearch && matchesFavorites;
+  });
+
+  if (sortMode === "low") {
+    filtered.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortMode === "high") {
+    filtered.sort((a, b) => b.price - a.price);
+  }
+
+  if (sortMode === "name") {
+    filtered.sort((a, b) => a.name.localeCompare(b.name, "ru"));
+  }
+
+  productGrid.innerHTML = filtered.map(product => `
+    <article class="product-card" data-product="${product.id}">
+      <div class="product-image">
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+
+        <span class="product-label">${product.label}</span>
+
+        <button
+          class="favorite-button ${favoriteIds.has(product.id) ? "active" : ""}"
+          data-favorite="${product.id}"
+          aria-label="Добавить в избранное"
+        >
+          <span>${favoriteIds.has(product.id) ? "♥" : "♡"}</span>
+        </button>
+      </div>
+
+      <div class="product-info">
+        <div class="product-info-top">
+          <h3>${product.name}</h3>
+          <span class="product-price">${formatPrice(product.price)}</span>
+        </div>
+
+        <p>${product.description}</p>
+
+        <button class="add-button" data-add="${product.id}">
+          Добавить в корзину <span>+</span>
+        </button>
+      </div>
+    </article>
+  `).join("");
+
+  productCount.textContent = `${filtered.length} растений`;
+
+  emptyState.style.display = filtered.length === 0 ? "block" : "none";
+  productGrid.style.display = filtered.length === 0 ? "none" : "grid";
+}
+
+/* FILTERS */
+
+document.getElementById("categories").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+
+  if (!button) return;
+
+  document.querySelectorAll(".category").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  activeCategory = button.dataset.category;
+
+  renderProducts();
+});
+
+document.getElementById("searchInput").addEventListener("input", event => {
+  searchQuery = event.target.value.trim();
+  renderProducts();
+});
+
+sortSelect.addEventListener("change", event => {
+  sortMode = event.target.value;
+  renderProducts();
+});
+
+favoriteFilter.addEventListener("click", () => {
+  favoritesOnly = !favoritesOnly;
+
+  favoriteFilter.classList.toggle("active", favoritesOnly);
+
+  favoriteFilter.innerHTML = favoritesOnly
+    ? "<span>♥</span> Избранное"
+    : "<span>♡</span> Избранное";
+
+  renderProducts();
+});
+
+/* PRODUCT GRID EVENTS */
+
+productGrid.addEventListener("click", event => {
+  const favoriteButton = event.target.closest("[data-favorite]");
+
+  if (favoriteButton) {
+    const id = Number(favoriteButton.dataset.favorite);
+
+    if (favoriteIds.has(id)) {
+      favoriteIds.delete(id);
+    } else {
+      favoriteIds.add(id);
+    }
+
+    renderProducts();
+    return;
+  }
+
+  const addButton = event.target.closest("[data-add]");
+
+  if (addButton) {
+    addToCart(Number(addButton.dataset.add));
+    return;
+  }
+
+  const card = event.target.closest(".product-card");
+
+  if (!card) return;
+
+  openProductDetails(Number(card.dataset.product));
+});
+
+/* PRODUCT DETAILS */
+
+function openProductDetails(id) {
+  const product = products.find(item => item.id === id);
+
+  if (!product) return;
+
+  selectedDetailProduct = product;
+
+  detailImage.src = product.image;
+  detailImage.alt = product.name;
+  detailName.textContent = product.name;
+  detailPrice.textContent = formatPrice(product.price);
+  detailDescription.textContent = product.description;
+  detailCategory.textContent = categoryNames[product.category] || "Растение";
+  detailLabel.textContent = product.label;
+
+  productModalOverlay.classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+
+function closeProductDetails() {
+  productModalOverlay.classList.remove("open");
+
+  if (!cartPanel.classList.contains("open")) {
+    document.body.classList.remove("no-scroll");
+  }
+}
+
+productModalClose.addEventListener("click", closeProductDetails);
+
+productModalOverlay.addEventListener("click", event => {
+  if (event.target === productModalOverlay) {
+    closeProductDetails();
+  }
+});
+
+detailAddButton.addEventListener("click", () => {
+  if (!selectedDetailProduct) return;
+
+  const id = selectedDetailProduct.id;
+
+  closeProductDetails();
+  addToCart(id);
+});
+
+/* CART */
+
+function addToCart(id) {
+  const existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({
+      id,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+  showToast("Растение добавлено в корзину");
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+}
+
+function changeQuantity(id, amount) {
+  const item = cart.find(item => item.id === id);
+
+  if (!item) return;
+
+  item.quantity += amount;
+
+  if (item.quantity <= 0) {
+    removeFromCart(id);
+    return;
+  }
+
+  renderCart();
+}
+
+function getTotal() {
+  return cart.reduce((total, item) => {
+    const product = products.find(product => product.id === item.id);
+    return total + product.price * item.quantity;
+  }, 0);
+}
+
+function getCartQuantity() {
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
+function renderCart() {
+  const quantity = getCartQuantity();
+  const total = getTotal();
+
+  cartCount.textContent = quantity;
+  cartTitleCount.textContent = `(${quantity})`;
+  cartTotal.textContent = formatPrice(total);
+  modalTotal.textContent = formatPrice(total);
+
+  cartEmpty.style.display = cart.length === 0 ? "flex" : "none";
+  cartFooter.style.display = cart.length === 0 ? "none" : "block";
+
+  cartItems.innerHTML = cart.map(item => {
+    const product = products.find(product => product.id === item.id);
+
+    return `
+      <div class="cart-row">
+        <img src="${product.image}" alt="${product.name}">
+
+        <div class="cart-row-info">
+          <div>
+            <h3>${product.name}</h3>
+            <p>${formatPrice(product.price)}</p>
+          </div>
+
+          <div class="cart-row-bottom">
+            <div class="quantity-control">
+              <button data-minus="${product.id}">−</button>
+              <span>${item.quantity}</span>
+              <button data-plus="${product.id}">+</button>
+            </div>
+
+            <button class="remove-item" data-remove="${product.id}">
+              Удалить
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+cartItems.addEventListener("click", event => {
+  const minus = event.target.closest("[data-minus]");
+  const plus = event.target.closest("[data-plus]");
+  const remove = event.target.closest("[data-remove]");
+
+  if (minus) changeQuantity(Number(minus.dataset.minus), -1);
+  if (plus) changeQuantity(Number(plus.dataset.plus), 1);
+  if (remove) removeFromCart(Number(remove.dataset.remove));
+});
+
+function openCart() {
+  cartPanel.classList.add("open");
+  cartOverlay.classList.add("open");
+  document.body.classList.add("no-scroll");
+}
+
+function closeCart() {
+  cartPanel.classList.remove("open");
+  cartOverlay.classList.remove("open");
+  document.body.classList.remove("no-scroll");
+}
+
+document.getElementById("openCart").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+
+document.getElementById("continueShopping").addEventListener("click", () => {
+  closeCart();
+
+  document.getElementById("catalog").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+/* CHECKOUT */
+
+document.getElementById("checkoutButton").addEventListener("click", () => {
+  if (cart.length === 0) return;
+
+  modalTotal.textContent = formatPrice(getTotal());
+
+  modalOverlay.classList.add("open");
+  closeCart();
+});
+
+document.getElementById("modalClose").addEventListener("click", () => {
+  modalOverlay.classList.remove("open");
+});
+
+modalOverlay.addEventListener("click", event => {
+  if (event.target === modalOverlay) {
+    modalOverlay.classList.remove("open");
+  }
+});
+
+checkoutForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (cart.length === 0) return;
+
+  const formData = new FormData(checkoutForm);
+  const name = formData.get("name");
+
+  const orderNumber = Math.floor(1000 + Math.random() * 9000);
+
+  modalOverlay.classList.remove("open");
+
+  cart = [];
+  renderCart();
+  checkoutForm.reset();
+
+  showToast(`Демо-заказ #${orderNumber} оформлен. Спасибо, ${name}!`);
+});
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message) {
+  clearTimeout(toastTimer);
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3200);
+}
+
+/* MOBILE MENU */
+
+const menuButton = document.getElementById("menuButton");
+const nav = document.getElementById("nav");
+
+menuButton.addEventListener("click", () => {
+  nav.classList.toggle("mobile-open");
+
+  menuButton.textContent = nav.classList.contains("mobile-open")
+    ? "✕"
+    : "☰";
+});
+
+nav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("mobile-open");
+    menuButton.textContent = "☰";
+  });
+});
+
+/* HEADER */
+
+window.addEventListener("scroll", () => {
+  document.getElementById("header").classList.toggle(
+    "scrolled",
+    window.scrollY > 20
+  );
+});
+
+/* KEYBOARD */
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCart();
+    closeProductDetails();
+    modalOverlay.classList.remove("open");
+    nav.classList.remove("mobile-open");
+    menuButton.textContent = "☰";
+  }
+});
+
+/* INIT */
+
+renderProducts();
+renderCart();
+/* ==========================
+   GREENHOUSE — SCROLL REVEAL
+========================== */
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("reveal-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+function observeProductCards() {
+  document.querySelectorAll(".product-card:not(.reveal-observed)")
+    .forEach(card => {
+      card.classList.add("reveal-observed");
+      revealObserver.observe(card);
+    });
+}
+
+observeProductCards();
+
+const productMutationObserver = new MutationObserver(() => {
+  observeProductCards();
+});
+
+const productGridElement = document.querySelector(".product-grid");
+
+if (productGridElement) {
+  productMutationObserver.observe(productGridElement, {
+    childList: true
+  });
+}
+/* ==========================
+   GREENHOUSE — BUTTON MOTION
+========================== */
+
+document.addEventListener("click", function(event) {
+  const button = event.target.closest(".add-button, .detail-add-button");
+
+  if (!button) return;
+
+  button.classList.remove("button-clicked");
+
+  void button.offsetWidth;
+
+  button.classList.add("button-clicked");
+
+  setTimeout(() => {
+    button.classList.remove("button-clicked");
+  }, 400);
+});
+/* ===== CART COUNT ANIMATION ===== */
+
+const animatedCartCount = document.getElementById("cartCount");
+
+if (animatedCartCount) {
+  const countObserver = new MutationObserver(() => {
+    animatedCartCount.classList.remove("count-pulse");
+
+    void animatedCartCount.offsetWidth;
+
+    animatedCartCount.classList.add("count-pulse");
+
+    setTimeout(() => {
+      animatedCartCount.classList.remove("count-pulse");
+    }, 250);
+  });
+
+  countObserver.observe(animatedCartCount, {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+}
+/* ===== PLANT FLY ANIMATION ===== */
+
+document.addEventListener("click", function(event) {
+  const button = event.target.closest(".add-button, .detail-add-button");
+
+  if (!button) return;
+
+  const cart = document.getElementById("openCart");
+  if (!cart) return;
+
+  let sourceImage = null;
+
+  if (button.classList.contains("detail-add-button")) {
+    sourceImage = document.getElementById("detailImage");
+  } else {
+    const card = button.closest(".product-card");
+    sourceImage = card ? card.querySelector("img") : null;
+  }
+
+  if (!sourceImage || !sourceImage.src) return;
+
+  const start = sourceImage.getBoundingClientRect();
+  const end = cart.getBoundingClientRect();
+
+  const clone = document.createElement("img");
+  clone.src = sourceImage.src;
+  clone.className = "fly-plant";
+
+  clone.style.left = start.left + "px";
+  clone.style.top = start.top + "px";
+  clone.style.width = Math.min(start.width, 90) + "px";
+  clone.style.height = Math.min(start.height, 90) + "px";
+
+  document.body.appendChild(clone);
+
+  const startX = start.left + start.width / 2;
+  const startY = start.top + start.height / 2;
+
+  const endX = end.left + end.width / 2;
+  const endY = end.top + end.height / 2;
+
+  const moveX = endX - startX;
+  const moveY = endY - startY;
+
+  const animation = clone.animate([
+    {
+      transform: "translate(0, 0) scale(1) rotate(0deg)",
+      opacity: 1
+    },
+    {
+      transform: `translate(${moveX * .55}px, ${moveY * .35 - 100}px) scale(.7) rotate(12deg)`,
+      opacity: 1,
+      offset: .55
+    },
+    {
+      transform: `translate(${moveX}px, ${moveY}px) scale(.15) rotate(25deg)`,
+      opacity: .2
+    }
+  ], {
+    duration: 750,
+    easing: "cubic-bezier(.22, 1, .36, 1)"
+  });
+
+  animation.onfinish = () => clone.remove();
+});
+/* =================================
+   GREENHOUSE — HERO MOUSE PARALLAX
+================================= */
+
+const hero3D = document.querySelector(".hero-3d");
+const heroVisual = document.querySelector(".hero-visual");
+
+if (hero3D && heroVisual) {
+  heroVisual.addEventListener("mousemove", (event) => {
+    const rect = heroVisual.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    hero3D.style.transform = `
+      rotateY(${x * 12}deg)
+      rotateX(${-y * 10}deg)
+    `;
+  });
+
+  heroVisual.addEventListener("mouseleave", () => {
+    hero3D.style.transform = "rotateY(0deg) rotateX(0deg)";
+  });
+}
+/* =================================
+   GREENHOUSE — 3D PRODUCT TILT
+================================= */
+
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+
+  document.addEventListener("mousemove", function(event) {
+    const card = event.target.closest(".product-card");
+
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateY = ((x - centerX) / centerX) * 5;
+    const rotateX = ((centerY - y) / centerY) * 5;
+
+    card.style.transform = `
+      translateY(-4px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+    `;
+
+    card.style.setProperty("--glare-x", `${x / rect.width * 100}%`);
+    card.style.setProperty("--glare-y", `${y / rect.height * 100}%`);
+
+    card.classList.add("tilt-active");
+  });
+
+  document.addEventListener("mouseout", function(event) {
+    const card = event.target.closest(".product-card");
+
+    if (!card) return;
+
+    if (card.contains(event.relatedTarget)) return;
+
+    card.style.transform = "";
+    card.classList.remove("tilt-active");
+  });
+}

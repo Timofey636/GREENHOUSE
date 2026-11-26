@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREENHOUSE — больше зелени, больше жизни</title>
+  <meta name="description" content="Комнатные растения для вашего пространства. GREENHOUSE — больше зелени, больше жизни.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">GREEN<span>HOUSE</span><i>®</i></a>
+
+    <nav id="nav">
+      <a href="#catalog">Каталог</a>
+      <a href="#about">О нас</a>
+      <a href="#care">Уход</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+
+  <a
+    href="https://t.me/plantatsiyaa"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="social-header"
+  >
+    <span>Наш Telegram</span>
+    <span>↗</span>
+  </a>
+
+  <button class="cart-button" id="openCart">
+    <span>Корзина</span>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+  <button class="menu-button" id="menuButton">☰</button>
+
+</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+        <div class="eyebrow">BOTANICAL SHOP / 2026</div>
+
+        <h1>Больше зелени.<br><em>Больше жизни.</em></h1>
+
+        <p>
+          Превращаем обычное пространство в место,
+          где хочется дышать, жить и вдохновляться.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#catalog" class="button button-dark">
+            Выбрать растение <span>↗</span>
+          </a>
+          <a href="#about" class="text-link">О нашей коллекции</a>
+        </div>
+
+        <div class="hero-note">
+          <span class="hero-dot"></span>
+          <span>Живая коллекция для вашего дома</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-3d">
+          <div class="hero-3d-glow"></div>
+
+<div class="floating-leaves" aria-hidden="true">
+  <span class="floating-leaf leaf-1"></span>
+  <span class="floating-leaf leaf-2"></span>
+  <span class="floating-leaf leaf-3"></span>
+  <span class="floating-leaf leaf-4"></span>
+  <span class="floating-leaf leaf-5"></span>
+  <span class="floating-leaf leaf-6"></span>
+</div>
+
+<canvas id="plantCanvas"></canvas>
+          <div class="hero-3d-label">
+            <span>01 / BOTANICAL OBJECT</span>
+            <span>GREENHOUSE</span>
+          </div>
+        </div>
+
+        <div class="hero-floating-card">
+          <span>OUR FAVORITE</span>
+          <strong>Monstera Deliciosa</strong>
+          <small>2490 ₽</small>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+
+  <section class="benefits">
+    <div class="container benefits-grid">
+      <div>
+        <span class="benefit-number">01</span>
+        <strong>Выбранная коллекция</strong>
+        <p>Растения, которые дополняют интерьер.</p>
+      </div>
+
+      <div>
+        <span class="benefit-number">02</span>
+        <strong>Простой уход</strong>
+        <p>Подбираем варианты для разного опыта.</p>
+      </div>
+
+      <div>
+        <span class="benefit-number">03</span>
+        <strong>Природа дома</strong>
+        <p>Добавляем живые детали в пространство.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+
+  <section class="catalog-section" id="catalog">
+    <div class="container">
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">OUR COLLECTION</div>
+          <h2>Зелёная <em>коллекция</em></h2>
+        </div>
+
+        <p>
+          Найдите растение, которое<br>
+          станет частью вашего дома.
+        </p>
+      </div>
+
+      <div class="catalog-categories" id="categories">
+        <button class="category active" data-category="all">Все растения</button>
+        <button class="category" data-category="large">Крупные</button>
+        <button class="category" data-category="easy">Неприхотливые</button>
+        <button class="category" data-category="small">Компактные</button>
+      </div>
+
+      <div class="catalog-tools">
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Поиск растений...">
+        </div>
+
+        <button class="favorite-filter" id="favoriteFilter">
+          <span>♡</span> Избранное
+        </button>
+
+        <select id="sortSelect" class="sort-select">
+          <option value="default">Сортировка</option>
+          <option value="low">Сначала дешевле</option>
+          <option value="high">Сначала дороже</option>
+          <option value="name">По названию</option>
+        </select>
+      </div>
+
+      <div class="catalog-meta">
+        <span id="productCount">12 растений</span>
+        <span>COLLECTION / 2026</span>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="empty-state" id="emptyState">
+        <h3>Растения не найдены</h3>
+        <p>Попробуйте изменить поиск или фильтр.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+
+      <div class="about-image">
+        <img
+          src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85"
+          alt="Зелёные растения в уютном интерьере"
+          loading="lazy"
+        >
+        <div class="about-image-label">GREENHOUSE / INTERIOR</div>
+      </div>
+
+      <div class="about-content">
+        <div class="eyebrow">A LITTLE ABOUT US</div>
+
+        <h2>Природа.<br>В деталях.</h2>
+
+        <p>
+          GREENHOUSE — пространство для тех, кто хочет
+          добавить немного природы в повседневную жизнь.
+        </p>
+
+        <p>
+          Мы верим, что растения не просто украшают интерьер.
+          Они помогают создавать атмосферу, в которой приятно
+          находиться и возвращаться домой.
+        </p>
+
+        <a href="#catalog" class="button button-outline">
+          Смотреть коллекцию <span>↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CARE -->
+
+  <section class="care-section" id="care">
+    <div class="container">
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">PLANT CARE</div>
+          <h2>Зелень без <em>сложностей</em></h2>
+        </div>
+
+        <p>
+          Несколько простых правил,<br>
+          чтобы растения чувствовали себя хорошо.
+        </p>
+      </div>
+
+      <div class="care-grid">
+
+        <article class="care-card">
+          <div class="care-icon">☀</div>
+          <h3>Освещение</h3>
+          <p>Подбирайте место с подходящим светом для конкретного растения.</p>
+          <span>01 / LIGHT</span>
+        </article>
+
+        <article class="care-card">
+          <div class="care-icon">◌</div>
+          <h3>Полив</h3>
+          <p>Проверяйте влажность грунта перед поливом, а не только календарь.</p>
+          <span>02 / WATER</span>
+        </article>
+
+        <article class="care-card">
+          <div class="care-icon">⌁</div>
+          <h3>Влажность</h3>
+          <p>Следите за условиями в помещении и потребностями вида.</p>
+          <span>03 / HUMIDITY</span>
+        </article>
+
+        <article class="care-card">
+          <div class="care-icon">♧</div>
+          <h3>Забота</h3>
+          <p>Периодически осматривайте листья и поддерживайте чистоту.</p>
+          <span>04 / CARE</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+<!-- TESTIMONIALS -->
+
+<section class="reviews-section" id="reviews">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">CUSTOMER NOTES / DEMO</div>
+        <h2>Тёплые слова.<br><em>Зелёные истории.</em></h2>
+      </div>
+
+      <p>
+        Пример оформления отзывов<br>
+        для будущего магазина.
+      </p>
+    </div>
+
+    <div class="reviews-grid">
+
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>
+          «Очень нравится идея сочетать растения
+          с интерьером. Сайт выглядит спокойно
+          и приятно.»
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">А</div>
+          <div>
+            <strong>Анна</strong>
+            <span>Демонстрационный отзыв</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>
+          «Мне нравится подборка растений
+          и то, насколько удобно смотреть
+          каталог и карточки.»
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">М</div>
+          <div>
+            <strong>Мария</strong>
+            <span>Демонстрационный отзыв</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>
+          «Очень красивый визуальный стиль.
+          Особенно понравился главный экран
+          и аккуратные детали.»
+        </p>
+        <div class="review-author">
+          <div class="review-avatar">Д</div>
+          <div>
+            <strong>Дмитрий</strong>
+            <span>Демонстрационный отзыв</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="reviews-disclaimer">
+      DEMO CONTENT — отзывы представлены исключительно для демонстрации дизайна.
+    </div>
+
+  </div>
+</section>
+  <!-- CONTACT -->
+
+  <section class="contact-section" id="contact">
+    <div class="container contact-content">
+      <div class="eyebrow">LET'S MAKE IT GREEN</div>
+
+      <h2>Пусть в вашем доме<br><em>будет больше жизни.</em></h2>
+
+      <p>
+        Следите за нашей коллекцией,
+        новинками и идеями в Telegram.
+      </p>
+
+      <small>Демонстрационная ссылка — замените её на ссылку канала.</small>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <a href="#" class="logo logo-footer">
+          GREEN<span>HOUSE</span><i>®️</i>
+        </a>
+
+        <p>
+          Больше зелени.<br>
+          Больше жизни.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <span class="footer-title">НАВИГАЦИЯ</span>
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#care">Уход</a>
+        <a href="#reviews">Отзывы</a>
+      </div>
+
+      <div class="footer-nav">
+        <span class="footer-title">КОЛЛЕКЦИЯ</span>
+        <a href="#catalog">Комнатные растения</a>
+        <a href="#care">Советы по уходу</a>
+        <a href="#contact">Контакты</a>
+      </div>
+
+      <div class="footer-nav">
+        <span class="footer-title">СОЦСЕТИ</span>
+        <a href="https://t.me/plantatsiyaa"
+           target="_blank"
+           rel="noopener noreferrer">
+          Telegram ↗
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>GREENHOUSE © 2026</span>
+      <span>DEMO WEBSITE / PORTFOLIO PROJECT</span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- CART -->
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-panel" id="cartPanel">
+
+  <div class="cart-header">
+    <div>
+      <div class="eyebrow">YOUR SELECTION</div>
+      <h2>Корзина <span id="cartTitleCount">(0)</span></h2>
+    </div>
+
+    <button class="close-button" id="closeCart">×</button>
+  </div>
+
+  <button class="continue-shopping" id="continueShopping">
+    ← Продолжить покупки
+  </button>
+
+  <div class="cart-empty" id="cartEmpty">
+    <div class="cart-empty-icon">♧</div>
+    <h3>Корзина пока пустая</h3>
+    <p>Добавьте растения из коллекции.</p>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-footer" id="cartFooter">
+    <div class="cart-total-row">
+      <span>Итого</span>
+      <strong id="cartTotal">0 ₽</strong>
+    </div>
+
+    <button class="button button-dark checkout-button" id="checkoutButton">
+      Оформить демо-заказ <span>↗</span>
+    </button>
+
+    <p>Демонстрационное оформление, без оплаты.</p>
+  </div>
+
+</aside>
+
+<!-- CHECKOUT MODAL -->
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="checkout-modal">
+
+    <button class="close-button modal-close" id="modalClose">×</button>
+
+    <div class="eyebrow">DEMO CHECKOUT</div>
+    <h2>Оформление</h2>
+
+    <p>Заполните данные для демонстрации оформления заказа.</p>
+
+    <form id="checkoutForm">
+
+      <label for="customerName">Ваше имя</label>
+      <input id="customerName" name="name" required placeholder="Имя">
+
+      <label for="customerPhone">Телефон</label>
+      <input id="customerPhone" name="phone" required placeholder="+7">
+
+      <label for="customerAddress">Адрес</label>
+      <input id="customerAddress" name="address" required placeholder="Адрес доставки">
+
+      <div class="modal-total">
+        <span>Итого</span>
+        <strong id="modalTotal">0 ₽</strong>
+      </div>
+
+      <button type="submit" class="button button-dark checkout-button">
+        Подтвердить демо-заказ
+      </button>
+
+    </form>
+
+    <small>Демо-сайт. Заказ не отправляется продавцу.</small>
+
+  </div>
+</div>
+
+<!-- PRODUCT DETAILS -->
+
+<div class="product-modal-overlay" id="productModalOverlay">
+
+  <div class="product-modal" id="productModal">
+
+    <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">×</button>
+
+    <div class="product-modal-image">
+      <img id="detailImage" src="" alt="">
+      <span class="product-label" id="detailLabel"></span>
+    </div>
+
+    <div class="product-modal-content">
+
+      <div class="eyebrow">GREENHOUSE COLLECTION</div>
+
+      <h2 id="detailName"></h2>
+
+      <div class="detail-price" id="detailPrice"></div>
+
+      <p class="detail-description" id="detailDescription"></p>
+
+      <div class="detail-specs">
+        <div>
+          <span>Категория</span>
+          <strong id="detailCategory"></strong>
+        </div>
+
+        <div>
+          <span>Коллекция</span>
+          <strong>GREENHOUSE</strong>
+        </div>
+
+        <div>
+          <span>Формат</span>
+          <strong>Комнатное растение</strong>
+        </div>
+      </div>
+
+      <button class="button button-dark detail-add-button" id="detailAddButton">
+        Добавить в корзину <span>↗</span>
+      </button>
+
+      <p class="demo-note">Демонстрационная карточка товара.</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+<script type="module" src="flower3d.js"></script>
+
+</body>
+</html>
