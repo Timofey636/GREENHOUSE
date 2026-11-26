@@ -913,3 +913,4 @@ gallery?.addEventListener("touchend", (event) => {
 
   updateProductGallery();
 }, { passive: true });
+initializePlantGalleries();
