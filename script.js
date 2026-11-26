@@ -136,8 +136,7 @@ async function loadPlantPhotos(productId) {
 
   return photos;
 }
-
-async function initializePlantGalleries() {
+  async function initializePlantGalleries() {
   for (const product of products) {
     const photos = await loadPlantPhotos(product.id);
 
@@ -152,7 +151,6 @@ async function initializePlantGalleries() {
   renderProducts();
 }
 
-initializePlantGalleries();
 let cart = [];
 let activeCategory = "all";
 let searchQuery = "";
