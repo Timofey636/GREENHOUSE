@@ -29,16 +29,6 @@
 
     <div class="header-actions">
 
-      <a
-        href="https://t.me/plantatsiyaa"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-header"
-      >
-        <span>Наш Telegram</span>
-        <span>↗️</span>
-      </a>
-
       <button class="cart-button" id="openCart">
         <span>Корзина</span>
         <span class="cart-count" id="cartCount">0</span>
@@ -430,7 +420,48 @@
   </section>
 
 </main>
+<section class="social-section" id="social">
+  <div class="social-inner">
+    <span class="social-eyebrow">STAY CONNECTED</span>
+    <h2>Растения ближе,<br>чем кажется.</h2>
+    <p class="social-description">
+      Выбирайте растения, следите за новинками
+      и задавайте вопросы напрямую.
+    </p>
 
+    <div class="social-links">
+      <a href="https://www.avito.ru/brands/i5239066/all/rasteniya?src=sharing&sellerId=ce7ae2cbaa2cff23c9057331dcbb728d"
+         target="_blank" rel="noopener" class="social-card avito-card">
+        <span class="social-icon">A</span>
+        <div class="social-card-text">
+          <h3>Avito</h3>
+          <p>Все растения и объявления</p>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+
+      <a href="https://wa.me/79269310136"
+         target="_blank" rel="noopener" class="social-card whatsapp-card">
+        <span class="social-icon">W</span>
+        <div class="social-card-text">
+          <h3>WhatsApp</h3>
+          <p>Связаться и заказать</p>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+
+      <a href="https://t.me/plantatsiyaa"
+         target="_blank" rel="noopener" class="social-card telegram-card">
+        <span class="social-icon">T</span>
+        <div class="social-card-text">
+          <h3>Telegram</h3>
+          <p>Новости и новые растения</p>
+        </div>
+        <span class="social-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
 <!-- FOOTER -->
 
 <footer class="footer">
@@ -453,14 +484,33 @@
 
       <div class="footer-nav">
 
-        <span class="footer-title">НАВИГАЦИЯ</span>
+  <span class="footer-title">СОЦСЕТИ</span>
 
-        <a href="#catalog">Каталог</a>
-        <a href="#about">О нас</a>
-        <a href="#care">Уход</a>
-        <a href="#reviews">Отзывы</a>
+  <a
+    href="https://t.me/plantatsiyaa"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Telegram ↗
+  </a>
 
-      </div>
+  <a
+    href="https://wa.me/79269310136"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    WhatsApp ↗
+  </a>
+
+  <a
+    href="https://www.avito.ru/brands/i5239066/all/rasteniya?src=sharing&sellerId=ce7ae2cbaa2cff23c9057331dcbb728d"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Avito ↗
+  </a>
+
+</div>
 
       <div class="footer-nav">
 
@@ -592,10 +642,25 @@
 
     <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">×</button>
 
-    <div class="product-modal-image">
-      <img id="detailImage" src="" alt="">
-      <span class="product-label" id="detailLabel"></span>
-    </div>
+    <div class="product-modal-image" id="detailGallery">
+
+  <img id="detailImage" src="" alt="">
+
+  <span class="product-label" id="detailLabel"></span>
+
+  <button class="gallery-arrow gallery-prev" id="galleryPrev" type="button" aria-label="Предыдущая фотография">
+    ‹
+  </button>
+
+  <button class="gallery-arrow gallery-next" id="galleryNext" type="button" aria-label="Следующая фотография">
+    ›
+  </button>
+
+  <div class="gallery-counter" id="galleryCounter">
+    1 / 1
+  </div>
+
+</div>
 
     <div class="product-modal-content">
 
