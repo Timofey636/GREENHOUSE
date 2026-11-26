@@ -137,16 +137,20 @@ async function loadPlantPhotos(productId) {
   return photos;
 }
   async function initializePlantGalleries() {
-  for (const product of products) {
-    const photos = await loadPlantPhotos(product.id);
+  renderProducts();
 
-    if (photos.length > 0) {
-      product.gallery = photos;
-      product.image = photos[0];
-    } else {
-      product.gallery = [product.image];
-    }
-  }
+  await Promise.all(
+    products.map(async product => {
+      const photos = await loadPlantPhotos(product.id);
+
+      if (photos.length > 0) {
+        product.gallery = photos;
+        product.image = photos[0];
+      } else {
+        product.gallery = [product.image];
+      }
+    })
+  );
 
   renderProducts();
 }
